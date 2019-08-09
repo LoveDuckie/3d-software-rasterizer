@@ -1,0 +1,8 @@
+**/MainApp/Debug
+**/MainApp/Release
+**/*.obj
+**/*.exe
+.vs
+.vscode
+.suo
+.vcxproj.user

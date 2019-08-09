@@ -20,12 +20,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -82,47 +84,45 @@
     <None Include="small.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AmbientLight.h" />
-    <ClInclude Include="AppEngine.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="DirectionalLight.h" />
-    <ClInclude Include="MainApp.h" />
-    <ClInclude Include="MainWindow.h" />
-    <ClInclude Include="Matrix2D.h" />
-    <ClInclude Include="Matrix3D.h" />
-    <ClInclude Include="MD2Loader.h" />
-    <ClInclude Include="Model3D.h" />
-    <ClInclude Include="OBJLoader.h" />
-    <ClInclude Include="PointLight.h" />
-    <ClInclude Include="Polygon3D.h" />
-    <ClInclude Include="Rasterizer.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="resource1.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="Vector3D.h" />
-    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AmbientLight.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AppEngine.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Camera.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\DirectionalLight.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MainApp.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MainWindow.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Matrix2D.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Matrix3D.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MD2Loader.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Model3D.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\PointLight.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Polygon3D.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Rasterizer.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\resource.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\resource1.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\stdafx.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\targetver.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vector3D.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AmbientLight.cpp" />
-    <ClCompile Include="AppEngine.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="DirectionalLight.cpp" />
-    <ClCompile Include="MainApp.cpp" />
-    <ClCompile Include="Matrix2D.cpp" />
-    <ClCompile Include="Matrix3D.cpp" />
-    <ClCompile Include="MD2Loader.cpp" />
-    <ClCompile Include="Model3D.cpp" />
-    <ClCompile Include="OBJLoader.cpp" />
-    <ClCompile Include="PointLight.cpp" />
-    <ClCompile Include="Polygon3D.cpp" />
-    <ClCompile Include="Rasterizer.cpp" />
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\AmbientLight.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\AppEngine.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Camera.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\DirectionalLight.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\MainApp.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Matrix2D.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Matrix3D.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\MD2Loader.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Model3D.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\PointLight.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Polygon3D.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Rasterizer.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Vector3D.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Vertex.cpp" />
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Vector3D.cpp" />
-    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MainApp.rc" />
