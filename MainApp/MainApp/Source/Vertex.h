@@ -7,11 +7,11 @@ using namespace Gdiplus;
 class Vertex
 {
 	public:
-		Vertex(void);
+		Vertex();
 		Vertex(float x, float y, float w);
 		Vertex(float x, float y, float z, float w);
 		Vertex(const Vertex& v);
-		~Vertex(void);
+		~Vertex();
 
 		float GetX(void) const;
 		void SetX(float);
@@ -43,6 +43,8 @@ class Vertex
 		void SetNormalContribCount(int);
 		const int GetNormalContribCount() const;
 		void BumpNormalContribCount();
+
+		static Vertex Zero;
 
 	private:
 		float _x;

@@ -21,8 +21,8 @@ class Model3D
 {
 
 public:
-	Model3D(void); // Constructor
-	virtual ~Model3D(void); // Destructor
+	Model3D(); // Constructor
+	virtual ~Model3D(); // Destructor
 	
 	//Model3D(const Model3D& model);
 
@@ -35,17 +35,16 @@ public:
 	void ApplyTransformToTransformedVertices(const Matrix3D& transform); // Work on this later
 
 	// For tidying up the size of the lists when they're first loaded.
-	void ResizePolys(int value);
-	void ResizeVerts(int value);
+	void ResizePolygons(int value);
+	void ResizeVertices(int value);
 
 	// Mutators
 	void SetPolygon(int, int, int);
 	void SetVertex(float, float, float, float);
 
-	void CalculateLightingDirectional(const Vertex &cameraPosition, std::vector<DirectionalLight> dirLights);
-	void CalculateAmbientLight(const Vertex &cameraPosition, AmbientLight ambLight);
-
-	void CalculateLightingDirectional_Vertex(const Vertex &cameraPosition, std::vector<DirectionalLight> dirLights);
+	void CalculateLightingDirectional(const Vertex& cameraPosition, std::vector<DirectionalLight> directionalLights);
+	void CalculateAmbientLight(const Vertex& cameraPosition, AmbientLight ambientLight);
+	void CalculateLightingDirectional_Vertex(const Vertex& cameraPosition, std::vector<DirectionalLight> directionalLights);
 
 	void Dehomogenize();
 
@@ -58,9 +57,8 @@ public:
 
 	void CalculateBackfaces(const Vertex &cameraPosition);
 
-	//
-	static Vector3D CrossProduct(Vector3D other_one, Vector3D other_two);
-	static float DotProduct(Vector3D other_one, Vector3D other_two);
+	static Vector3D Cross(const Vector3D& other_one, const Vector3D& other_two);
+	static float Dot(Vector3D other_one, Vector3D other_two);
 
 	const Vertex GetTransformedVertex(int i);
 
@@ -76,9 +74,9 @@ public:
 	void SetKSComponent(int index, float value);
 
 	// Rotation Getters
-	const float XRotation(void);
-	const float YRotation(void);
-	const float ZRotation(void);
+	const float& GetXRotation(void) const;
+	const float& GetYRotation(void) const;
+	const float GetZRotation(void);
 
 	// Rotation Setters
 	void SetXRotation(float);
@@ -96,14 +94,14 @@ private:
 	 //Model3D(Model3D& pOther);
 	 //const Model3D& operator=(const Model3D& other);
 
-	 std::vector<Polygon3D> polygonList;
-	 std::vector<Vertex> vertexList;
-	 std::vector<Vertex> transformedVertexList; // Transformed, keep the original
+	 std::vector<Polygon3D> _polygonList;
+	 std::vector<Vertex> _vertexList;
+	 std::vector<Vertex> _transformedVertexList; // Transformed, keep the original
 
 	 // Rotation vars
-	 float _xrotation;
-	 float _yrotation;
-	 float _zrotation;
+	 float _xRotation;
+	 float _yRotation;
+	 float _zRotation;
 
 	 float kd[3];
 	 float ka[3];

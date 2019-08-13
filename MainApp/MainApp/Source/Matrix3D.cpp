@@ -156,6 +156,11 @@ const Vertex Matrix3D::operator*(const Vertex &p) const
 
 }
 
+const Vertex Matrix3D::operator+(const Vertex& p) const
+{
+
+}
+
 void Matrix3D::SetValues(int x, int y, float value)
 {
 	this->_m[x][y] = value;
@@ -197,7 +202,7 @@ const Matrix3D Matrix3D::MakeRotation(float xRotation, float yRotation, float zR
 	return temp;
 }
 
-const float Matrix3D::DegreesToRadians(int degrees)
+const float Matrix3D::DegreesToRadians(const int& degrees)
 {
 	float PI = 3.14f;
 	return degrees * PI / 180;

@@ -82,7 +82,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 		}
 
-		appEngine.Process();
+		appEngine.Process(0.0);
 	}
 
 	appEngine.Shutdown();
@@ -198,31 +198,31 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 
 		case ID_ROTATION_XAXIS32809:
-			appEngine.ChangeRotation("x_axis");
+			appEngine.SetRotationType("x_axis");
 			break;
 
 		case ID_ROTATION_YAXIS32810:
-			appEngine.ChangeRotation("y_axis");
+			appEngine.SetRotationType("y_axis");
 			break;
 
 		case ID_ROTATION_ZAXIS32811:
-			appEngine.ChangeRotation("z_axis");
+			appEngine.SetRotationType("z_axis");
 			break;
 
 		case ID_SPEED_1:
-			appEngine.ChangeSpeed(1);
+			appEngine.SetRotationSpeed(1);
 			break;
 
 		case ID_SPEED_2:
-			appEngine.ChangeSpeed(2);
+			appEngine.SetRotationSpeed(2);
 			break;
 
 		case ID_SPEED_3:
-			appEngine.ChangeSpeed(3);
+			appEngine.SetRotationSpeed(3);
 			break;
 
 		case ID_SPEED_4:
-			appEngine.ChangeSpeed(4);
+			appEngine.SetRotationSpeed(4);
 			break;
 
 		default:

@@ -7,18 +7,17 @@
 #include "DirectionalLight.h"
 #include "AmbientLight.h" // Delicious lighting :3
 #include <string>
-
+#include "ModelImporter.h"
 
 using namespace std;
 
 namespace Framework
 {
-
 	class AppEngine
 	{
 	public:
-		AppEngine(void);
-		virtual ~AppEngine(void);
+		AppEngine();
+		~AppEngine();
 
 	private:
 		AppEngine& operator=(const AppEngine& rhs);
@@ -27,21 +26,23 @@ namespace Framework
 	public:
 
 		void Initialise(HWND hWnd);
-		void Process(void);
+		void Process(const double& deltaTimeMs);
 		void Paint(HDC hdc);
 		void Shutdown(void);
 
-		void RotateZ(float degrees);
-		void RotateY(float degrees);
-		void RotateX(float degrees);
+		void RotateZ(const float& degrees);
+		void RotateY(const float& degrees);
+		void RotateX(const float& degrees);
 
-		void ChangeRotation(std::string _type);
-		void ChangeSpeed(int _newspeed);
+		ModelImporter* const CreateImporter(const char* const absoluteFilePath);
+
+		void SetRotationType(std::string _type);
+		void SetRotationSpeed(int _newspeed);
 
 		const std::vector<DirectionalLight>& GetLights() const;
 		
 		const AmbientLight GetAmbientLight();
-		void SetAmbientLight(AmbientLight ambLight);
+		void SetAmbientLight(const AmbientLight& ambLight);
 
 		const Model3D& GetModel() const;
 		const Camera& GetCamera() const;
@@ -52,6 +53,8 @@ namespace Framework
 
 		Camera _camera;
 		Model3D _model;
+
+		ModelImporter* _importer;
 
 		std::vector<DirectionalLight> _directionalLights;
 		AmbientLight _ambientLight;

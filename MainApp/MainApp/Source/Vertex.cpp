@@ -3,7 +3,7 @@
 
 // Constructors
 
-Vertex::Vertex(void)
+Vertex::Vertex(void) : _x(0.f), _y(0.f), _z(0.f)
 {
 	Init(0.0f, 0.0f, 0.0f,0.0f);
 }
@@ -29,7 +29,6 @@ Vertex::~Vertex(void)
 {
 }
 
-// Class integrated to remove one set of colours from another.
 void Vertex::SubtractColour(Gdiplus::Color _colorTwo)
 {
 	Gdiplus::ARGB temp_argb;
@@ -40,7 +39,7 @@ void Vertex::SubtractColour(Gdiplus::Color _colorTwo)
 	g = (this->_color.GetG() - _colorTwo.GetG());
 	b = (this->_color.GetB() - _colorTwo.GetB());
 
-	temp_argb = Color::MakeARGB(255,r,g,b);
+	temp_argb = Color::MakeARGB(255, r, g, b);
 }
 
 // Accessors and mutators
@@ -100,6 +99,8 @@ void Vertex::BumpNormalContribCount()
 {
 	this->_useCount++;
 }
+
+Vertex Vertex::Zero = Vertex(0.f,0.f,0.f);
 
 const int Vertex::GetNormalContribCount() const
 {

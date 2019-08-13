@@ -103,6 +103,7 @@
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\targetver.h" />
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vector3D.h" />
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h" />
+    <ClInclude Include="Source\AppEngineConstants.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildProjectDirectory)\Source\AmbientLight.cpp" />

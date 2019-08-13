@@ -14,8 +14,8 @@ public:
 		unsigned int viewWidth,
 		unsigned int viewHeight);
 
-	const int& GetViewHeight() const;
-	const int& GetViewWidth() const;
+	const unsigned int& GetViewHeight() const;
+	const unsigned int& GetViewWidth() const;
 		
 	const float GetXRotation();
 	const float GetYRotation();
@@ -33,22 +33,20 @@ public:
 
 	void SetPosition(const Vertex& pos);
 
-	const Matrix3D ViewpointTransformation();
-
-	const Matrix3D PerspectiveTransformation();
-
-	const Matrix3D ScreenTransformation();
+	const Matrix3D& GetViewpointTransformation() const;
+	const Matrix3D& GetPerspectiveTransformation() const;
+	const Matrix3D& GetScreenTransformation() const;
 
 private:
 	Vertex _position;
 	unsigned int _viewHeight; // For dealing with Screen Transformation
 	unsigned int _viewWidth;
 
-	float x_rotation;
-	float y_rotation;
-	float z_rotation;
+	float _xRotation;
+	float _yRotation;
+	float _zRotation;
 	
-	Matrix3D viewpointTransformation; // Camera transformation
-	Matrix3D perspectiveTransformation; // Perspective transformation
-	Matrix3D screenTransformation; // Screen transformation (varies on viewwidth & viewheight)
+	Matrix3D _viewpointTransformation; // Camera transformation
+	Matrix3D _perspectiveTransformation; // Perspective transformation
+	Matrix3D _screenTransformation; // Screen transformation (varies on viewwidth & viewheight)
 };

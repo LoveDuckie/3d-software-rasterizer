@@ -37,12 +37,12 @@ AppEngine::~AppEngine(void)
 	Shutdown();
 }
 
-void AppEngine::ChangeSpeed(int _newspeed)
+void AppEngine::SetRotationSpeed(int _newspeed)
 {
 	_speed = _newspeed;
 }
 
-void AppEngine::ChangeRotation(std::string _type)
+void AppEngine::SetRotationType(std::string _type)
 {
 	if (_type == "x_axis")
 	{
@@ -150,15 +150,15 @@ void AppEngine::Initialise(HWND hWnd)
 
 }
 
-void AppEngine::Process(void)
+void Framework::AppEngine::Process(const double& deltaTimeMs)
 {
 	// At the moment, all we do is render a new image. In the future, we might do more here
 	Render();
 }
 
-void AppEngine::SetAmbientLight(AmbientLight ambLight)
+void AppEngine::SetAmbientLight(const AmbientLight& ambientLight)
 {
-	this->_ambientLight = ambLight;
+	this->_ambientLight = ambientLight;
 }
 
 const AmbientLight AppEngine::GetAmbientLight()
@@ -249,11 +249,11 @@ void AppEngine::Render(void)
 	this->_model.CalculateBackfaces(_camera.GetPosition());
 	this->_model.CalculateAmbientLight(_camera.GetPosition(), this->_ambientLight); // Calculate ambient light based off the object value here
 	this->_model.CalculateLightingDirectional(_camera.GetPosition(),_directionalLights);
-	this->_model.ApplyTransformToTransformedVertices(this->_camera.ViewpointTransformation());
+	this->_model.ApplyTransformToTransformedVertices(this->_camera.GetViewpointTransformation());
 	this->_model.Sort(); // Now that the values have been put into the transformed list, lets sort them from largest to smallest!
-	this->_model.ApplyTransformToTransformedVertices(this->_camera.PerspectiveTransformation());
+	this->_model.ApplyTransformToTransformedVertices(this->_camera.GetPerspectiveTransformation());
 	this->_model.Dehomogenize();
-	this->_model.ApplyTransformToTransformedVertices(this->_camera.ScreenTransformation());
+	this->_model.ApplyTransformToTransformedVertices(this->_camera.GetScreenTransformation());
 	
 	// Gouraud Shading
 	this->_model.CalculateNormalVector(); // Find the normals for the colour and the vector
@@ -386,4 +386,29 @@ void AppEngine::Shutdown(void)
 const Model3D& AppEngine::GetModel() const
 {
 	return this->_model;
+}
+
+void Framework::AppEngine::RotateZ(const float& degrees)
+{
+
+}
+
+void Framework::AppEngine::RotateY(const float& degrees)
+{
+
+}
+
+void Framework::AppEngine::RotateX(const float& degrees)
+{
+
+}
+
+ModelImporter* const Framework::AppEngine::CreateImporter(const char* const absoluteFilePath)
+{
+	return nullptr;
+}
+
+const Camera& Framework::AppEngine::GetCamera() const
+{
+	return this->_camera;
 }

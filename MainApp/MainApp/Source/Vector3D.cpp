@@ -31,17 +31,17 @@ Vector3D::Vector3D(float x, float y, float z)
 }
 
 // Simple mutators
-float Vector3D::GetX()
+const float& Vector3D::GetX() const
 {
 	return _x;
 }
 
-float Vector3D::GetZ()
+const float& Vector3D::GetZ() const
 {
 	return this->_z;
 }
 
-float Vector3D::GetY()
+const float& Vector3D::GetY() const
 {
 	return this->_y;
 }

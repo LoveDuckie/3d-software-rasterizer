@@ -1,47 +1,45 @@
 #include "stdafx.h"
 #include "Camera.h"
+#include "AppEngineConstants.h"
 
 Camera::Camera(
 	    float xRotation, float yRotation, float zRotation,
 		const Vertex& position,
 		unsigned int viewWidth,
-		unsigned int viewHeight
-		)
+		unsigned int viewHeight)
 {
-	this->x_rotation = xRotation;
-	this->y_rotation = yRotation;
-	this->z_rotation = zRotation;
+	this->_xRotation = xRotation;
+	this->_yRotation = yRotation;
+	this->_zRotation = zRotation;
 	
 	this->_viewHeight = viewHeight;
 	this->_viewWidth = viewWidth;
 	
 	this->_position = position;
 
-	this->viewpointTransformation = Matrix3D();
-	this->screenTransformation = Matrix3D();
-	this->perspectiveTransformation = Matrix3D();
-
-	
+	this->_viewpointTransformation = Matrix3D();
+	this->_screenTransformation = Matrix3D();
+	this->_perspectiveTransformation = Matrix3D();
 
 	// Projection Matrix
-	this->screenTransformation = Matrix3D( (_viewWidth / 2.0f), 0.0f, 0.0f, (_viewWidth / 2.0f),
+	this->_screenTransformation = Matrix3D( (_viewWidth / 2.0f), 0.0f, 0.0f, (_viewWidth / 2.0f),
 										  0.0f, -(_viewHeight / 2.0f), 0.0f, (_viewHeight / 2.0f),
 										  0.0f, 0.0f, 1.0f, 0.0f,
 										  0.0f, 0.0f, 0.0f, 1.0f);
 
 	// View Matrix -- Perform transformations on the camera.
-	this->viewpointTransformation =      	 Matrix3D(1.0f, 0.0f, 0.0f, 0.0f,
-													  0.0f, cos(x_rotation), sin(x_rotation), 0.0f, // X Axis Rotation
-													  0.0f, -sin(x_rotation), cos(x_rotation), 0.0f,
+	this->_viewpointTransformation =      	 Matrix3D(1.0f, 0.0f, 0.0f, 0.0f,
+													  0.0f, cos(_xRotation), sin(_xRotation), 0.0f, // X Axis Rotation
+													  0.0f, -sin(_xRotation), cos(_xRotation), 0.0f,
 													  0.0f, 0.0f, 0.0f, 1.0f)
 											 *
-											 Matrix3D(cos(y_rotation),0.0f, -sin(y_rotation), 0.0f, // Y Axis Rotation
+											 Matrix3D(cos(_yRotation),0.0f, -sin(_yRotation), 0.0f, // Y Axis Rotation
 													  0.0f, 1.0f, 0.0f, 0.0f,
-													  sin(y_rotation), 0.0f, cos(y_rotation), 0.0f,
+													  sin(_yRotation), 0.0f, cos(_yRotation), 0.0f,
 													  0.0f, 0.0f, 0.0f, 1.0f)
 											 *
-											 Matrix3D(cos(z_rotation), sin(z_rotation), 0.0f, 0.0f, // Z Axis Rotation
-													 -sin(z_rotation), cos(z_rotation), 0.0f, 0.0f,
+											 Matrix3D(cos(_zRotation), sin(_zRotation), 0.0f, 0.0f, // Z Axis Rotation
+													 -sin(_zRotation), cos(_zRotation), 0.0f, 0.0f,
 											   		 0.0f, 0.0f, 1.0f, 0.0f,
 													 0.0f, 0.0f, 0.0f, 1.0f)
 
@@ -55,7 +53,7 @@ Camera::Camera(
 
 	
 
-	this->perspectiveTransformation = Matrix3D(1.0f, 0.0f, 0.0f, 0.0f,
+	this->_perspectiveTransformation = Matrix3D(1.0f, 0.0f, 0.0f, 0.0f,
 											   0.0f, 1.0f, 0.0f, 0.0f,
 											   0.0f, 0.0f, 1.0f, 0.0f,
 											   0.0f, 0.0f, 1.0f, 0.0f);
@@ -65,53 +63,48 @@ Camera::Camera(
 
 Camera::~Camera(void)
 {
-	// Do nothing yet
-
-	this->_position = Vertex();
 }
 
-Camera::Camera(void)
+Camera::Camera(void) : _viewWidth(Framework::AppEngineConstants::CameraViewportWidth), 
+						_viewHeight(Framework::AppEngineConstants::CameraViewportHeight)
 {
-	_viewWidth = 480;
-	_viewHeight = 640;
-
-	x_rotation = 0.0f;
-	y_rotation = 0.0f;
-	z_rotation = 0.0f;
+	_xRotation = 0.0f;
+	_yRotation = 0.0f;
+	_zRotation = 0.0f;
 
 	this->_position = Vertex(0.0f,0.0f,0.0f,-0.50f); // 3rd value is "W" remember
 
 	// Setting up default values
-	this->perspectiveTransformation = Matrix3D();
-	this->screenTransformation = Matrix3D();
-	this->viewpointTransformation = Matrix3D();
+	this->_perspectiveTransformation = Matrix3D();
+	this->_screenTransformation = Matrix3D();
+	this->_viewpointTransformation = Matrix3D();
 }
 
 // Getters
 
-const int& Camera::GetViewHeight() const
+const unsigned int& Camera::GetViewHeight() const
 {
 	return this->_viewHeight;
 }
 
-const int& Camera::GetViewWidth() const
+const unsigned int& Camera::GetViewWidth() const
 {
 	return this->_viewWidth;
 }
 
 const float Camera::GetXRotation()
 {
-	return this->x_rotation;
+	return this->_xRotation;
 }
 
 const float Camera::GetYRotation()
 {
-	return this->y_rotation;
+	return this->_yRotation;
 }
 
 const float Camera::GetZRotation()
 {
-	return this->z_rotation;
+	return this->_zRotation;
 }
 
 const Vertex Camera::GetPosition()
@@ -119,36 +112,34 @@ const Vertex Camera::GetPosition()
 	return this->_position;
 }
 
-const Matrix3D Camera::ViewpointTransformation()
+const Matrix3D& Camera::GetViewpointTransformation() const
 {
-	return this->viewpointTransformation;
+	return this->_viewpointTransformation;
 }
 
-const Matrix3D Camera::PerspectiveTransformation()
+const Matrix3D& Camera::GetPerspectiveTransformation() const
 {
-	return this->perspectiveTransformation;
+	return this->_perspectiveTransformation;
 }
 
-const Matrix3D Camera::ScreenTransformation()
+const Matrix3D& Camera::GetScreenTransformation() const
 {
-	return this->screenTransformation;
+	return this->_screenTransformation;
 }
-
-// Setters
 
 void Camera::SetXRotation(const float& value)
 {
-	this->x_rotation = value;
+	this->_xRotation = value;
 }
 
 void Camera::SetYRotation(const float& value)
 {
-	this->y_rotation = value;
+	this->_yRotation = value;
 }
 
 void Camera::SetZRotation(const float& value)
 {
-	this->z_rotation = value;
+	this->_zRotation = value;
 }
 
 void Camera::SetPosition(const Vertex& pos)

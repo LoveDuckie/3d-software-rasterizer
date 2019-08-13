@@ -24,108 +24,111 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AmbientLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AppEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainApp.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AppEngine.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MainApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rasterizer.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MainWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vertex.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Matrix2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix2D.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Matrix3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix3D.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MD2Loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MD2Loader.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Model3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Model3D.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\PointLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Polygon3D.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Polygon3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Rasterizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Vector3D.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirectionalLight.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\resource1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AmbientLight.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PointLight.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource1.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MainWindow.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AppEngineConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\AmbientLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainApp.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\AppEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AppEngine.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rasterizer.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vertex.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\MainApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix2D.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Matrix2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix3D.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Matrix3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MD2Loader.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\MD2Loader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model3D.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Model3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Polygon3D.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\PointLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Polygon3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3D.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Rasterizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirectionalLight.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PointLight.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\Vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AmbientLight.cpp">
+    <ClCompile Include="$(MSBuildProjectDirectory)\Source\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

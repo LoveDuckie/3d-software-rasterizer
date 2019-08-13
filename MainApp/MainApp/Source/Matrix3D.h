@@ -26,7 +26,7 @@ class Matrix3D
 
 		const float GetValues(int x, int y);
 
-		const float static DegreesToRadians(int degrees);
+		const float static DegreesToRadians(const int& degrees);
 
 	private:
 

@@ -17,9 +17,9 @@ public:
 	Vector3D(float, float, float);
 	~Vector3D(void);
 	
-	float GetX();
-	float GetY();
-	float GetZ();
+	const float& GetX() const;
+	const float& GetY() const;
+	const float& GetZ() const;
 
 	void SetX(float);
 	void SetY(float);

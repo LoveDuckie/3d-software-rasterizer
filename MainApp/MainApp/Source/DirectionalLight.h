@@ -19,8 +19,6 @@ class DirectionalLight
 		Vector3D GetPosition();
 		void SetPosition(float, float, float);
 
-		void CalculateNormal(void);
-
 		Gdiplus::Color GetColor() const;
 		void SetColor(Gdiplus::ARGB _argb);
 

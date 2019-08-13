@@ -43,7 +43,7 @@ void Model3D::SetPolygon(int value_one, int value_two, int value_three)
 	_temp.SetValue(1,value_two);
 	_temp.SetValue(2,value_three);
 
-	this->polygonList.push_back(_temp);
+	this->_polygonList.push_back(_temp);
 }
 
 void Model3D::SetVertex(float x, float y, float z, float w)
@@ -55,7 +55,7 @@ void Model3D::SetVertex(float x, float y, float z, float w)
 	_temp.SetZ(z);
 	_temp.SetW(w);
 
-	this->vertexList.push_back(_temp);
+	this->_vertexList.push_back(_temp);
 	//this->transformedVertexList[index] = other;
 }
 
@@ -64,13 +64,13 @@ void Model3D::ApplyTransformToLocalVertices(const Matrix3D& transform)
 {
 	Vertex tempVert;
 
-	transformedVertexList.clear();
+	_transformedVertexList.clear();
 
 	// Loop through the vertices and modify accordingly.
-	for (int i = 0; i < (int) vertexList.size(); i++)
+	for (int i = 0; i < (int) _vertexList.size(); i++)
 	{
-		tempVert = transform * vertexList[i];
-		this->transformedVertexList.push_back(tempVert);
+		tempVert = transform * _vertexList[i];
+		this->_transformedVertexList.push_back(tempVert);
 	}
 	
 }
@@ -82,32 +82,32 @@ void Model3D::Sort(void)
 	int index_1, index_2, index_3;
 	float temp = 0.0f;
 
-	for (int i = 0; i < (int) this->polygonList.size(); i++)
+	for (int i = 0; i < (int) this->_polygonList.size(); i++)
 	{
-		index_1 = this->polygonList[i].GetValue(0);
-		index_2 = this->polygonList[i].GetValue(1);
-		index_3 = this->polygonList[i].GetValue(2);
+		index_1 = this->_polygonList[i].GetValue(0);
+		index_2 = this->_polygonList[i].GetValue(1);
+		index_3 = this->_polygonList[i].GetValue(2);
 
-		A = this->transformedVertexList[index_1];
-		B = this->transformedVertexList[index_2];
-		C = this->transformedVertexList[index_3];
+		A = this->_transformedVertexList[index_1];
+		B = this->_transformedVertexList[index_2];
+		C = this->_transformedVertexList[index_3];
 		
 		temp = ((A.GetZ() + B.GetZ() + C.GetZ()) / 3);
 
-		this->polygonList[i].SetAverage(temp);
+		this->_polygonList[i].SetAverage(temp);
 	}
 
 	// Using the sort function, make use of the valueGreater boolean function to make comparisons.
-	std::sort(this->polygonList.begin( ),this->polygonList.end( ), valueGreater);
+	std::sort(this->_polygonList.begin( ),this->_polygonList.end( ), valueGreater);
 }
 
 // Multiply the give matrix to the list of transformed vertices.
 
 void Model3D::ApplyTransformToTransformedVertices(const Matrix3D& transform)
 {
-	for (int i = 0; i < (int) this->transformedVertexList.size(); i++)
+	for (int i = 0; i < (int) this->_transformedVertexList.size(); i++)
 	{
-		this->transformedVertexList[i] = transform * this->transformedVertexList[i];
+		this->_transformedVertexList[i] = transform * this->_transformedVertexList[i];
 	}
 }
 
@@ -119,7 +119,7 @@ void Model3D::CalculateAmbientLight(const Vertex &cameraPosition, AmbientLight a
 
 	Gdiplus::ARGB temp_argb;
 
-	for (int i = 0; i < (int) this->polygonList.size(); i++)
+	for (int i = 0; i < (int) this->_polygonList.size(); i++)
 	{
 		temp_r = ambLight.GetColor().GetR();
 		temp_g = ambLight.GetColor().GetG();
@@ -134,12 +134,12 @@ void Model3D::CalculateAmbientLight(const Vertex &cameraPosition, AmbientLight a
 		temp_b = (temp_b > 255 ? 255 : (temp_b < 0 ? 0 : temp_b));
 
 		temp_argb = Color::MakeARGB(temp_a, temp_r, temp_g, temp_b);
-		this->polygonList[i].SetColor(temp_argb);
+		this->_polygonList[i].SetColor(temp_argb);
 	}
 
 
 	// Setting default ambient lighting for Vertices
-	for (int j = 0; j < (int) this->transformedVertexList.size(); j++)
+	for (int j = 0; j < (int) this->_transformedVertexList.size(); j++)
 	{
 		temp_r = ambLight.GetColor().GetR();
 		temp_g = ambLight.GetColor().GetG();
@@ -154,7 +154,7 @@ void Model3D::CalculateAmbientLight(const Vertex &cameraPosition, AmbientLight a
 		temp_b = (temp_b > 255 ? 255 : (temp_b < 0 ? 0 : temp_b));
 
 		temp_argb = Color::MakeARGB(temp_a, temp_r, temp_g, temp_b);
-		this->transformedVertexList[j].SetColor(temp_argb);
+		this->_transformedVertexList[j].SetColor(temp_argb);
 	}
 }
 
@@ -173,12 +173,12 @@ void Model3D::CalculateLightingDirectional_Vertex(const Vertex &cameraPosition, 
 
 	float temp_dot_product;
 
-	for (int i = 0; i < (int) this->transformedVertexList.size(); i++)
+	for (int i = 0; i < (int) this->_transformedVertexList.size(); i++)
 	{
 		total_a = 255;
-		total_r = this->transformedVertexList[i].GetColor().GetR();
-		total_g = this->transformedVertexList[i].GetColor().GetG();
-		total_b = this->transformedVertexList[i].GetColor().GetB();
+		total_r = this->_transformedVertexList[i].GetColor().GetR();
+		total_g = this->_transformedVertexList[i].GetColor().GetG();
+		total_b = this->_transformedVertexList[i].GetColor().GetB();
 
 		for (int j = 0; j < (int) dirLights.size(); j++)
 		{
@@ -194,7 +194,7 @@ void Model3D::CalculateLightingDirectional_Vertex(const Vertex &cameraPosition, 
 			temp_light_normal = dirLights[j].GetPosition().Normalise();
 
 
-			temp_dot_product = Model3D::DotProduct(temp_light_normal,transformedVertexList[i].GetNormal());
+			temp_dot_product = Model3D::Dot(temp_light_normal,_transformedVertexList[i].GetNormal());
 
 			temp_r = (int)(temp_r * temp_dot_product);
 			temp_g = (int)(temp_g * temp_dot_product);
@@ -215,7 +215,7 @@ void Model3D::CalculateLightingDirectional_Vertex(const Vertex &cameraPosition, 
 
 		temp_argb = Color::MakeARGB(total_a,total_r,total_g,total_b);
 
-		this->transformedVertexList[i].SetColor(temp_argb);
+		this->_transformedVertexList[i].SetColor(temp_argb);
 	}
 }
 
@@ -234,12 +234,12 @@ void Model3D::CalculateLightingDirectional(const Vertex &cameraPosition, std::ve
 	float temp_dot_product;
 
 
-	for (int i = 0; i < (int) this->polygonList.size(); i++)
+	for (int i = 0; i < (int) this->_polygonList.size(); i++)
 	{
 		total_a = 255;
-		total_r = this->polygonList[i].GetColor().GetR();
-		total_g = this->polygonList[i].GetColor().GetG();
-		total_b = this->polygonList[i].GetColor().GetB();
+		total_r = this->_polygonList[i].GetColor().GetR();
+		total_g = this->_polygonList[i].GetColor().GetG();
+		total_b = this->_polygonList[i].GetColor().GetB();
 
 		for (int j = 0; j < (int) dirLights.size(); j++)
 		{
@@ -259,7 +259,7 @@ void Model3D::CalculateLightingDirectional(const Vertex &cameraPosition, std::ve
 			//negative = Vector3D(-temp_light_normal.GetX(),-temp_light_normal.GetY(),-temp_light_normal.GetZ());
 
 			// Generating the dot product from: DIRECTION LIGHT NORMAL & POLYGON NORMAL
-			temp_dot_product = Model3D::DotProduct(temp_light_normal,polygonList[i].GetNormal());
+			temp_dot_product = Model3D::Dot(temp_light_normal,_polygonList[i].GetNormal());
 
 			temp_r = (int)(temp_r * temp_dot_product);
 			temp_g = (int)(temp_g * temp_dot_product);
@@ -281,18 +281,18 @@ void Model3D::CalculateLightingDirectional(const Vertex &cameraPosition, std::ve
 		temp_argb = Color::MakeARGB(total_a,total_r,total_g,total_b);
 
 		// Store back into polygon
-		this->polygonList[i].SetColor(temp_argb);
+		this->_polygonList[i].SetColor(temp_argb);
 	}
 }
 
 Polygon3D& Model3D::GetPolygon(int i)
 {
-	return this->polygonList[i];
+	return this->_polygonList[i];
 }
 
 Vertex& Model3D::GetVertex(int i)
 {
-	return this->vertexList[i];
+	return this->_vertexList[i];
 }
 
 void Model3D::CalculateNormalVector()
@@ -306,33 +306,32 @@ void Model3D::CalculateNormalVector()
 	// Basic ints to store the vertex indexes from the polygon
 	int _indexOne, _indexTwo, _indexThree;
 
-	for (int i = 0; i < (int) this->transformedVertexList.size(); i++)
+	for (int i = 0; i < (int) this->_transformedVertexList.size(); i++)
 	{
-		transformedVertexList[i].SetNormal(Vector3D(0,0,0));
-		transformedVertexList[i].SetNormalContribCount(0);
+		_transformedVertexList[i].SetNormal(Vector3D(0,0,0));
+		_transformedVertexList[i].SetNormalContribCount(0);
 	}
 
-	for (int j = 0; j < (int) this->polygonList.size(); j++)
+	for (int j = 0; j < (int) this->_polygonList.size(); j++)
 	{
 		// Storing the poly as a temp value to prevent repetitive calls
-		_tempPoly = this->polygonList[j];
+		_tempPoly = this->_polygonList[j];
 		_indexOne = _tempPoly.GetValue(0);
 		_indexTwo = _tempPoly.GetValue(1);
 		_indexThree = _tempPoly.GetValue(2);
 		
 		// Getting the vertices with the newly found indexes
-		_one = this->transformedVertexList[_indexOne];
-		_two = this->transformedVertexList[_indexTwo];
-		_three = this->transformedVertexList[_indexThree];
+		_one = this->_transformedVertexList[_indexOne];
+		_two = this->_transformedVertexList[_indexTwo];
+		_three = this->_transformedVertexList[_indexThree];
 
 		//// Now finding the normal of the polygon face (again)
 		A = _one.Subtract(_two);
 		B = _one.Subtract(_three);
 
-		_polyNormal = Model3D::CrossProduct(A,B);
-		this->polygonList[j].SetNormal(_polyNormal);
+		_polyNormal = Model3D::Cross(A,B);
+		this->_polygonList[j].SetNormal(_polyNormal);
 	
-
 		// Figure out the vertex normals here
 		_one.SetNormal(_one.GetNormal() + _polyNormal);
 		_one.BumpNormalContribCount();
@@ -342,23 +341,23 @@ void Model3D::CalculateNormalVector()
 		_three.BumpNormalContribCount();
 
 		// Put back in our new & lovely created temp vertices
-		this->transformedVertexList[_indexOne] = _one;
-		this->transformedVertexList[_indexTwo] = _two;
-		this->transformedVertexList[_indexThree] = _three;
+		this->_transformedVertexList[_indexOne] = _one;
+		this->_transformedVertexList[_indexTwo] = _two;
+		this->_transformedVertexList[_indexThree] = _three;
 	}
 
-	for (int k = 0; k < (int) this->transformedVertexList.size(); k++)
+	for (int k = 0; k < (int) this->_transformedVertexList.size(); k++)
 	{
 		Vector3D _normalTemp;
 
-		_normalTemp = this->transformedVertexList[k].GetNormal();
-		_normalTemp.DivideByInt(transformedVertexList[k].GetNormalContribCount());
+		_normalTemp = this->_transformedVertexList[k].GetNormal();
+		_normalTemp.DivideByInt(_transformedVertexList[k].GetNormalContribCount());
 		
 		// Do the normalisation here
 		_normalTemp.Normalise();
 
 		// Put our temp value back into the normal of the vertex.
-		this->transformedVertexList[k].SetNormal(_normalTemp);
+		this->_transformedVertexList[k].SetNormal(_normalTemp);
 	}
 
 }
@@ -380,9 +379,9 @@ void Model3D::CalculateNormalVector()
 //}
 
 // Changing list sizes to conserve a bit of memory.
-void Model3D::ResizePolys(int value)
+void Model3D::ResizePolygons(int value)
 {
-	this->polygonList.resize(value);
+	this->_polygonList.resize(value);
 }
 
 
@@ -390,70 +389,70 @@ void Model3D::Reset()
 {
 	// DESTROYYYYYY EVERYTHING! D:
 	
-	this->polygonList.clear();
-	this->vertexList.clear();
-	this->transformedVertexList.clear();
+	this->_polygonList.clear();
+	this->_vertexList.clear();
+	this->_transformedVertexList.clear();
 }
 
 // Changing list sizes to conserve a bit of memory.
-void Model3D::ResizeVerts(int value)
+void Model3D::ResizeVertices(int value)
 {
-	this->vertexList.resize(value);
+	this->_vertexList.resize(value);
 }
 
 void Model3D::Dehomogenize()
 {
-	for (int i = 0; i < (int) this->vertexList.size(); i++)
+	for (int i = 0; i < (int) this->_vertexList.size(); i++)
 	{
-		this->transformedVertexList[i].Dehomogenize();
+		this->_transformedVertexList[i].Dehomogenize();
 	}
 }
 
 std::vector<Vertex>& Model3D::GetTransformedVertices()
 {
-	return this->transformedVertexList;
+	return this->_transformedVertexList;
 }
 
 const Vertex Model3D::GetTransformedVertex(int i)
 {
-	return this->transformedVertexList[i];
+	return this->_transformedVertexList[i];
 }
 
 std::vector<Vertex>& Model3D::GetVertices()
 {
-	return this->vertexList;
+	return this->_vertexList;
 }
 
 std::vector<Polygon3D>& Model3D::GetPolygons()
 {
-	return this->polygonList;
+	return this->_polygonList;
 }
 
 // GETTERS
 
-const float Model3D::XRotation()
+const float& Model3D::GetXRotation(void) const
 {
-	return this->_xrotation;
+	return this->_xRotation;
 }
 
-const float Model3D::YRotation()
+const float& Model3D::GetYRotation(void) const
 {
-	return this->_yrotation;
+	return this->_yRotation;
 }
 
-const float Model3D::ZRotation()
+const float Model3D::GetZRotation()
 {
-	return this->_zrotation;
+	return this->_zRotation;
 }
 
-Vector3D Model3D::CrossProduct(Vector3D other_one, Vector3D other_two)
+Vector3D Model3D::Cross(const Vector3D& other_one, const Vector3D& other_two)
 {
 	return  Vector3D(other_one.GetY() * other_two.GetZ() - other_two.GetY() * other_one.GetZ(),
 					 other_one.GetZ() * other_two.GetX() - other_two.GetZ() * other_one.GetX(),
 					 other_one.GetX() * other_two.GetY() - other_two.GetX() * other_one.GetY());
 }
 
-float Model3D::DotProduct(Vector3D other_one, Vector3D other_two)
+float Model3D::Dot(Vector3D other_one, Vector3D other_two)
 {
 	return ((other_one.GetX() * other_two.GetX()) + (other_one.GetY() * other_two.GetY()) + (other_one.GetZ() * other_two.GetZ()));
 }
@@ -469,11 +468,11 @@ void Model3D::CalculateBackfaces(const Vertex &cameraPosition)
 
 	float finalDotProduct = 0.0f;
 
-	for (int i = 0; i < (int) this->polygonList.size(); i++)
+	for (int i = 0; i < (int) this->_polygonList.size(); i++)
 	{
-		_one = this->transformedVertexList[this->polygonList[i].GetValue(0)];
-		_two = this->transformedVertexList[this->polygonList[i].GetValue(1)];
-		_three = this->transformedVertexList[this->polygonList[i].GetValue(2)];
+		_one = this->_transformedVertexList[this->_polygonList[i].GetValue(0)];
+		_two = this->_transformedVertexList[this->_polygonList[i].GetValue(1)];
+		_three = this->_transformedVertexList[this->_polygonList[i].GetValue(2)];
 
 		// Define the two Vectors by substracting individual Vertices by themselves.
 		
@@ -481,22 +480,22 @@ void Model3D::CalculateBackfaces(const Vertex &cameraPosition)
 		B = _one.Subtract(_three);
 		
 		// Check the cross product
-		vectorNormal = Model3D::CrossProduct(A,B);
+		vectorNormal = Model3D::Cross(A,B);
 
 		// Storing the normal of polygons
-		this->polygonList[i].SetNormal(vectorNormal);
+		this->_polygonList[i].SetNormal(vectorNormal);
 		
 		// Get the eye vector by subtracting one more time with the camera position
 		eyeVector = _one.Subtract(cameraPosition);
 		
 		// Get the last dot product.
-		finalDotProduct = Model3D::DotProduct(vectorNormal, eyeVector);
+		finalDotProduct = Model3D::Dot(vectorNormal, eyeVector);
 
 		// Base the dot product based on where it is looking backwards or not.
 		if (finalDotProduct < 0.0f)
-			this->polygonList[i].SetBackfacing(true);
+			this->_polygonList[i].SetBackfacing(true);
 		else
-			this->polygonList[i].SetBackfacing(false);
+			this->_polygonList[i].SetBackfacing(false);
 
 	}
 }
