@@ -403,7 +403,7 @@ void Framework::AppEngine::RotateX(const float& degrees)
 
 }
 
-ModelImporter* const Framework::AppEngine::CreateImporter(const char* const absoluteFilePath)
+IModelImporter* const Framework::AppEngine::CreateImporter(const char* const absoluteFilePath)
 {
 	return nullptr;
 }

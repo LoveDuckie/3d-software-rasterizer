@@ -1,8 +1,8 @@
 #pragma once
 #include "Model3D.h"
-#include "ModelImporter.h"
+#include "IModelImporter.h"
 
-class FBXModelImporter : public ModelImporter
+class FBXModelImporter : public IModelImporter
 {
 public:
 	FBXModelImporter();

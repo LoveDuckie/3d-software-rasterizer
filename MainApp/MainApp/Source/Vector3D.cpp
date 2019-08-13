@@ -46,10 +46,6 @@ const float& Vector3D::GetY() const
 	return this->_y;
 }
 
-
-
-// Adding vectors together
-
 const Vector3D Vector3D::operator+(const Vector3D &other)
 {
 	Vector3D _temp;
@@ -69,6 +65,11 @@ Vector3D Vector3D::CrossProduct(const Vector3D &other)
 				 this->_x * other._y - other._x * this->_y); // X Co-Ordinate
 
 	return Sum;
+}
+
+const float& Vector3D::GetLength() const
+{
+	return _length;
 }
 
 float Vector3D::DotProduct(const Vector3D &other)

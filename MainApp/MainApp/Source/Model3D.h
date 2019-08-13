@@ -22,6 +22,7 @@ class Model3D
 
 public:
 	Model3D(); // Constructor
+	Model3D(const Model3D& rhs);
 	virtual ~Model3D(); // Destructor
 	
 	//Model3D(const Model3D& model);
@@ -90,10 +91,6 @@ public:
 	std::vector<Polygon3D>& GetPolygons();
 	
 private:
-	
-	 //Model3D(Model3D& pOther);
-	 //const Model3D& operator=(const Model3D& other);
-
 	 std::vector<Polygon3D> _polygonList;
 	 std::vector<Vertex> _vertexList;
 	 std::vector<Vertex> _transformedVertexList; // Transformed, keep the original

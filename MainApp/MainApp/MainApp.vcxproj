@@ -104,6 +104,11 @@
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vector3D.h" />
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h" />
     <ClInclude Include="Source\AppEngineConstants.h" />
+    <ClInclude Include="Source\FBXModelImporter.h" />
+    <ClInclude Include="Source\IFileSystem.h" />
+    <ClInclude Include="Source\MD2ModelImporter.h" />
+    <ClInclude Include="Source\IModelImporter.h" />
+    <ClInclude Include="Source\WindowsFileSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildProjectDirectory)\Source\AmbientLight.cpp" />
@@ -124,6 +129,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\FBXModelImporter.cpp" />
+    <ClCompile Include="Source\IFileSystem.cpp" />
+    <ClCompile Include="Source\MD2ModelImporter.cpp" />
+    <ClCompile Include="Source\IModelImporter.cpp" />
+    <ClCompile Include="Source\WindowsFileSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MainApp.rc" />

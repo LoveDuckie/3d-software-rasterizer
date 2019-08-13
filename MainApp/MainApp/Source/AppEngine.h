@@ -7,7 +7,7 @@
 #include "DirectionalLight.h"
 #include "AmbientLight.h" // Delicious lighting :3
 #include <string>
-#include "ModelImporter.h"
+#include "IModelImporter.h"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ namespace Framework
 		void RotateY(const float& degrees);
 		void RotateX(const float& degrees);
 
-		ModelImporter* const CreateImporter(const char* const absoluteFilePath);
+		IModelImporter* const CreateImporter(const char* const absoluteFilePath);
 
 		void SetRotationType(std::string _type);
 		void SetRotationSpeed(int _newspeed);
@@ -54,7 +54,7 @@ namespace Framework
 		Camera _camera;
 		Model3D _model;
 
-		ModelImporter* _importer;
+		IModelImporter* _importer;
 
 		std::vector<DirectionalLight> _directionalLights;
 		AmbientLight _ambientLight;

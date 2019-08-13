@@ -10,7 +10,6 @@ public:
 	
 protected:
 	virtual const Model3D* OnImport(const char* const absoluteFilePath) = 0;
-
 private:
 	
 };

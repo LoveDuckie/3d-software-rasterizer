@@ -23,6 +23,16 @@ Model3D::Model3D(void)
 
 }
 
+Model3D::Model3D(const Model3D& rhs) : _vertexList(rhs._vertexList), 
+	_polygonList(rhs._polygonList), 
+	_transformedVertexList(rhs._transformedVertexList), 
+	_xRotation(rhs._xRotation),
+	_yRotation(rhs._yRotation),
+	_zRotation(rhs._zRotation)
+{
+
+}
+
 Model3D::~Model3D(void)
 {
 	// Destructor

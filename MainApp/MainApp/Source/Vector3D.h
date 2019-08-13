@@ -44,7 +44,7 @@ public:
 	float DotProduct(const Vector3D &other);
 	Vector3D CrossProduct(const Vector3D &other);
 
-	float GetMagnitude();
+	const float& GetLength() const;
 
 private:
 	float _x;

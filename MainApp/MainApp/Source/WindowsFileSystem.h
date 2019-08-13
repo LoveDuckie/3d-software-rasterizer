@@ -1,7 +1,7 @@
 #pragma once
-#include "FileSystem.h"
+#include "IFileSystem.h"
 
-class WindowsFileSystem : public FileSystem
+class WindowsFileSystem : public IFileSystem
 {
 public:
 	WindowsFileSystem();
@@ -9,5 +9,5 @@ public:
 
 	// Inherited via FileSystem
 	virtual const bool FileExists(const char* const absoluteFilePath) override;
-	virtual const char* const CreateDirectory(const char* absoluteFilePath);
+	virtual const char* const CreateDirectory(const char* const absoluteFilePath);
 };
