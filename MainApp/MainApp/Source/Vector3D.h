@@ -13,6 +13,7 @@ class Vector3D
 {
 public:
 	Vector3D(void);
+	Vector3D(const Vector3D& rhs);
 	Vector3D(float, float, float);
 	~Vector3D(void);
 	

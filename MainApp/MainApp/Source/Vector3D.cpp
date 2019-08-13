@@ -2,11 +2,12 @@
 #include "Vector3D.h"
 
 // Default values
-Vector3D::Vector3D()
+Vector3D::Vector3D() : _x(0.f), _y(0.f), _z(0.f), _length(0.f)
 {
-	this->_x = 0.0f;
-	this->_y = 0.0f;
-	this->_z = 0.0f;
+}
+
+Vector3D::Vector3D(const Vector3D& rhs)
+{
 }
 
 Vector3D::~Vector3D()
@@ -23,11 +24,8 @@ void Vector3D::DivideByInt(int value)
 }
 
 // Constructors
-Vector3D::Vector3D(float x, float y, float z)
+Vector3D::Vector3D(float x, float y, float z) : _x(x),_y(y),_z(z),_length(0.f)
 {
-	this->_x = x;
-	this->_y = y;
-	this->_z = z;
 }
 
 // Simple mutators
