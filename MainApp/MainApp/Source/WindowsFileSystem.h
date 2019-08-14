@@ -1,5 +1,6 @@
 #pragma once
 #include "IFileSystem.h"
+#include <windows.h>
 
 class WindowsFileSystem : public IFileSystem
 {

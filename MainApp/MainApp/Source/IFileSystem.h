@@ -4,8 +4,8 @@
 class IFileSystem
 {
 public:
-	IFileSystem();
-	virtual ~IFileSystem();
+	IFileSystem() = default;
+	virtual ~IFileSystem() = default;
 
 	virtual const bool FileExists(const char* const absoluteFilePath) = 0;
 	virtual const char* const CreateDirectory(const char* const absoluteFilePath) = 0;

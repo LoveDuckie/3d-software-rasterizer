@@ -20,8 +20,8 @@ namespace Framework
 		~AppEngine();
 
 	private:
-		AppEngine& operator=(const AppEngine& rhs);
-		AppEngine(const AppEngine& rhs);
+		AppEngine& operator=(const AppEngine& rhs) = delete;
+		AppEngine(const AppEngine& rhs) = delete;
 
 	public:
 

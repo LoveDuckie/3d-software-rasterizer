@@ -3,6 +3,9 @@
 
 class MD2ModelImporter : public IModelImporter
 {
-	// Inherited via ModelImporter
-	virtual const Model3D* OnImport(const char* const absoluteFilePath) override;
+public:
+	MD2ModelImporter() = default;
+	virtual ~MD2ModelImporter() = default;
+protected:
+	virtual Model3D* const OnImport(const char* const absoluteFilePath) override;
 };

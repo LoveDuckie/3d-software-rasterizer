@@ -8,5 +8,5 @@ public:
 	FBXModelImporter();
 	virtual ~FBXModelImporter();
 protected:
-	virtual const Model3D* OnImport(const char* const absoluteFilePath);
+	virtual Model3D* const OnImport(const char* const absoluteFilePath) override;
 };

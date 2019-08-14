@@ -9,7 +9,7 @@ FBXModelImporter::~FBXModelImporter()
 {
 }
 
-const Model3D* FBXModelImporter::OnImport(const char* const absoluteFilePath)
+Model3D* const FBXModelImporter::OnImport(const char* const absoluteFilePath)
 {
 	return nullptr;
 }

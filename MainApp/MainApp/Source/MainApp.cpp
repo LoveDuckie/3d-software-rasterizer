@@ -56,7 +56,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	GdiplusStartup(&gdiPlusToken, &gdiplusStartupInput, NULL);
 	MyRegisterClass(hInstance);
 
-	// Perform application initialization:
 	if (!InitInstance (hInstance, nCmdShow))
 	{
 		return FALSE;
@@ -86,7 +85,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	}
 
 	appEngine.Shutdown();
-
 	GdiplusShutdown(gdiPlusToken);
 	
 	return (int) msg.wParam;

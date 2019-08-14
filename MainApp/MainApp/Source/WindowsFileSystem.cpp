@@ -11,6 +11,8 @@ WindowsFileSystem::~WindowsFileSystem()
 
 const bool WindowsFileSystem::FileExists(const char* const absoluteFilePath)
 {
+	WIN32_FIND_DATAA findData;
+	HANDLE findFileHandle = FindFirstFileA(absoluteFilePath, &findData);
 	return false;
 }
 

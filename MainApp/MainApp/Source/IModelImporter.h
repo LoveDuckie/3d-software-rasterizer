@@ -4,12 +4,12 @@
 class IModelImporter
 {
 public:
-	IModelImporter();
-	virtual ~IModelImporter();
+	IModelImporter() = default;
+	virtual ~IModelImporter() = default;
 	const Model3D* Import(const char* const absoluteFilePath);
 	
 protected:
-	virtual const Model3D* OnImport(const char* const absoluteFilePath) = 0;
+	virtual Model3D* const OnImport(const char* const absoluteFilePath) = 0;
 private:
 	
 };

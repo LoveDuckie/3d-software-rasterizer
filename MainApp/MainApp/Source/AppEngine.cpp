@@ -26,14 +26,12 @@ int _speed;
 int _modeIndex = 1;
 int _demoTicker;
 
-AppEngine::AppEngine(void)
+AppEngine::AppEngine(void) : _rasterizer(0), _ambientLight()
 {
-	_rasterizer = NULL;
 }
 
 AppEngine::~AppEngine(void)
 {
-	// Make sure everything is cleaned up (in case Shutdown() was now called directly)
 	Shutdown();
 }
 
