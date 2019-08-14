@@ -6,7 +6,18 @@ struct CharTraits;
 template<>
 struct CharTraits<char>
 {
+private:
+	CharTraits() = default;
+	~CharTraits() = default;
 
+public:
+	typedef char CharType;
+	static const char Space = ' ';
+	static const char Tab = '\t';
+	static const char NewLine = '\n';
+	static const char Return = '\r';
+	static const char Backslash = '\\';
+	static const char Forwardslash = '/';
 };
 
 template<>
