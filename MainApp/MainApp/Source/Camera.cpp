@@ -29,17 +29,17 @@ Camera::Camera(
 
 	// View Matrix -- Perform transformations on the camera.
 	this->_viewpointTransformation =      	 Matrix3D(1.0f, 0.0f, 0.0f, 0.0f,
-													  0.0f, cos(_xRotation), sin(_xRotation), 0.0f, // X Axis Rotation
-													  0.0f, -sin(_xRotation), cos(_xRotation), 0.0f,
+													  0.0f, cosf(_xRotation), sinf(_xRotation), 0.0f, // X Axis Rotation
+													  0.0f, -sinf(_xRotation), cosf(_xRotation), 0.0f,
 													  0.0f, 0.0f, 0.0f, 1.0f)
 											 *
-											 Matrix3D(cos(_yRotation),0.0f, -sin(_yRotation), 0.0f, // Y Axis Rotation
+											 Matrix3D(cosf(_yRotation),0.0f, -sinf(_yRotation), 0.0f, // Y Axis Rotation
 													  0.0f, 1.0f, 0.0f, 0.0f,
-													  sin(_yRotation), 0.0f, cos(_yRotation), 0.0f,
+													  sinf(_yRotation), 0.0f, cosf(_yRotation), 0.0f,
 													  0.0f, 0.0f, 0.0f, 1.0f)
 											 *
-											 Matrix3D(cos(_zRotation), sin(_zRotation), 0.0f, 0.0f, // Z Axis Rotation
-													 -sin(_zRotation), cos(_zRotation), 0.0f, 0.0f,
+											 Matrix3D(cosf(_zRotation), sinf(_zRotation), 0.0f, 0.0f, // Z Axis Rotation
+													 -sinf(_zRotation), cosf(_zRotation), 0.0f, 0.0f,
 											   		 0.0f, 0.0f, 1.0f, 0.0f,
 													 0.0f, 0.0f, 0.0f, 1.0f)
 

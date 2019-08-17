@@ -3,7 +3,7 @@
 #include "Matrix3D.h"
 
 // Constructors
-Matrix3D::Matrix3D(void)
+Matrix3D::Matrix3D() : _m()
 {
 	// Declare default initialisation
 	//Init(0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f);
@@ -96,7 +96,7 @@ Matrix3D& Matrix3D::operator= (const Matrix3D &rhs)
 
 }
 
-const float Matrix3D::GetValues(int x, int y)
+const float Matrix3D::GetValue(int x, int y)
 {
 	return this->_m[x][y];
 }
@@ -156,11 +156,6 @@ const Vertex Matrix3D::operator*(const Vertex &p) const
 
 }
 
-const Vertex Matrix3D::operator+(const Vertex& p) const
-{
-
-}
-
 void Matrix3D::SetValues(int x, int y, float value)
 {
 	this->_m[x][y] = value;
@@ -174,7 +169,7 @@ Matrix3D::~Matrix3D()
 
 // Operator overrides
 
-const Matrix3D Matrix3D::MakeRotation(float xRotation, float yRotation, float zRotation)
+const Matrix3D Matrix3D::Rotate(float xRotation, float yRotation, float zRotation)
 {
 	Matrix3D tempX;
 	Matrix3D tempY;
@@ -183,17 +178,17 @@ const Matrix3D Matrix3D::MakeRotation(float xRotation, float yRotation, float zR
 	Matrix3D temp;
 
 	tempX = Matrix3D(1,0,0,0,
-					 0,cos(xRotation),sin(xRotation),0,
-					 0,-sin(xRotation),cos(xRotation),0,
+					 0,cosf(xRotation),sinf(xRotation),0,
+					 0,-sinf(xRotation),cosf(xRotation),0,
 					 0,0,0,1);
 
-	tempY = Matrix3D(cos(yRotation),0,-sin(yRotation),0,
+	tempY = Matrix3D(cosf(yRotation),0,-sinf(yRotation),0,
 					 0,1,0,0,
-					 sin(yRotation),0,cos(yRotation),0,
+					 sinf(yRotation),0,cosf(yRotation),0,
 					 0,0,0,1);
 
-	tempZ = Matrix3D(cos(zRotation),sin(zRotation),0,0,
-					 -sin(zRotation),cos(zRotation),0,0,
+	tempZ = Matrix3D(cosf(zRotation),sinf(zRotation),0,0,
+					 -sinf(zRotation),cosf(zRotation),0,0,
 					 0,0,1,0,
 					 0,0,0,1);
 

@@ -1,3 +1,6 @@
+#ifndef AppEngine_h__
+#define AppEngine_h__
+
 #pragma once
 #include "Rasterizer.h"
 #include "Camera.h"
@@ -5,7 +8,7 @@
 #include "Model3D.h"
 #include "MD2Loader.h"
 #include "DirectionalLight.h"
-#include "AmbientLight.h" // Delicious lighting :3
+#include "AmbientLight.h"
 #include <string>
 #include "IModelImporter.h"
 
@@ -13,6 +16,14 @@ using namespace std;
 
 namespace Framework
 {
+	// The various types that the app engine can rotate on 
+	enum class AppEngineRotationTypes
+	{
+		XAxis,
+		YAxis,
+		ZAxis
+	};
+
 	class AppEngine
 	{
 	public:
@@ -48,11 +59,11 @@ namespace Framework
 		const Camera& GetCamera() const;
 
 	private:
-		HWND _hWnd;
-		Rasterizer * _rasterizer;
+		HWND			_hWnd;
+		Rasterizer*		_rasterizer;
 
-		Camera _camera;
-		Model3D _model;
+		Camera		_camera;
+		Model3D		_model;
 
 		IModelImporter* _importer;
 
@@ -63,3 +74,4 @@ namespace Framework
 	};
 
 }
+#endif // AppEngine_h__

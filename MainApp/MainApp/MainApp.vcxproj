@@ -103,12 +103,19 @@
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\targetver.h" />
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vector3D.h" />
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h" />
-    <ClInclude Include="Source\AppEngineConstants.h" />
-    <ClInclude Include="Source\FBXModelImporter.h" />
-    <ClInclude Include="Source\IFileSystem.h" />
-    <ClInclude Include="Source\MD2ModelImporter.h" />
-    <ClInclude Include="Source\IModelImporter.h" />
-    <ClInclude Include="Source\WindowsFileSystem.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AppEngineConstants.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Defines.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\FBXModelImporter.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IFileSystem.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IRasterizer.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MD2ModelImporter.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IModelImporter.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Memory.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\String.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\StringRef.h" />
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\WindowsFileSystem.h" />
+    <ClInclude Include="Source\CharTraits.h" />
+    <ClInclude Include="Source\StringUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildProjectDirectory)\Source\AmbientLight.cpp" />
@@ -133,6 +140,7 @@
     <ClCompile Include="Source\IFileSystem.cpp" />
     <ClCompile Include="Source\MD2ModelImporter.cpp" />
     <ClCompile Include="Source\IModelImporter.cpp" />
+    <ClCompile Include="Source\String.cpp" />
     <ClCompile Include="Source\WindowsFileSystem.cpp" />
   </ItemGroup>
   <ItemGroup>

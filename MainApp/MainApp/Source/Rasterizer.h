@@ -11,14 +11,26 @@ using namespace Gdiplus;
 
 struct ScanLine
 {
+public:
+	ScanLine() = default;
+	~ScanLine() = default;
+
+	ScanLine(const ScanLine& rhs) : 
+		xStart(rhs.xStart),
+		xEnd(rhs.xEnd)
+	{
+
+	}
+
+public:
 	float xStart;
 	float xEnd;
 
 	Gdiplus::Color _scanColor;
 
-	int rStart;
-	int gStart;
-	int bStart;
+	int _rStart;
+	int _gStart;
+	int _bStart;
 
 	int rEnd;
 	int gEnd;
@@ -52,9 +64,9 @@ class Rasterizer
 
 		void InterpolateVerts(Vertex _one, Vertex _two);
 
-		void InterpolateVertsWithColour(Vertex _one, Vertex _two);
+		void InterpolateVertsWithColour(const Vertex& _one, const Vertex& _two);
 
-		void FillPolygonGoraud(Vertex _one, Vertex _two, Vertex _three);
+		void FillPolygonGoraud(const Vertex& _one, const Vertex& _two, const Vertex& _three);
 		void FillPolygon(Vertex _one, Vertex _two, Vertex _three, Gdiplus::Color _color);
 
 	private:

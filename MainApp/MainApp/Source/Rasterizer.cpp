@@ -319,15 +319,15 @@ void Rasterizer::DrawSolidGoraud(const Model3D &model)
 	//FillPolygonGoraud(_tOne,_tTwo,_tThree);
 }
 
-void Rasterizer::FillPolygonGoraud(Vertex _one, Vertex _two, Vertex _three)
+void Rasterizer::FillPolygonGoraud(const Vertex& _one, const Vertex& _two, const Vertex& _three)
 {
 	for (int i = 0; i < (int) _height; i++)
 	{
 		_scanLines[i].xStart = (float) _width;
 		_scanLines[i].xEnd = 0.0f;
-		_scanLines[i].rStart = 255;
-		_scanLines[i].gStart = 255;
-		_scanLines[i].bStart = 255;
+		_scanLines[i]._rStart = 255;
+		_scanLines[i]._gStart = 255;
+		_scanLines[i]._bStart = 255;
 		_scanLines[i].rEnd = 0;
 		_scanLines[i].gEnd = 0;
 		_scanLines[i].bEnd = 0;
@@ -371,15 +371,15 @@ void Rasterizer::FillPolygonGoraud(Vertex _one, Vertex _two, Vertex _three)
 	{
 		int currentR = 0, currentG = 0, currentB = 0;
 
-		currentR = _scanLines[y].rStart;
-		currentG = _scanLines[y].gStart;
-		currentB = _scanLines[y].bStart;
+		currentR = _scanLines[y]._rStart;
+		currentG = _scanLines[y]._gStart;
+		currentB = _scanLines[y]._bStart;
 
 		for (int x = (int) _scanLines[y].xStart; x <= (int) _scanLines[y].xEnd; x++) // Keep looping through the difference between the xStart and xEnd
 		{
-			tempR = (int) ((_scanLines[y].rStart - _scanLines[y].rEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));  
-			tempG = (int) ((_scanLines[y].gStart - _scanLines[y].gEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));
-			tempB = (int) ((_scanLines[y].bStart - _scanLines[y].bEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));  
+			tempR = (int) ((_scanLines[y]._rStart - _scanLines[y].rEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));  
+			tempG = (int) ((_scanLines[y]._gStart - _scanLines[y].gEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));
+			tempB = (int) ((_scanLines[y]._bStart - _scanLines[y].bEnd) / (_scanLines[y].xStart - _scanLines[y].xEnd));  
 
 			temp_argb = Color::MakeARGB(255,currentR,currentG,currentB);
 
@@ -393,17 +393,19 @@ void Rasterizer::FillPolygonGoraud(Vertex _one, Vertex _two, Vertex _three)
 
 }
 
-void Rasterizer::InterpolateVertsWithColour(Vertex _one, Vertex _two)
+void Rasterizer::InterpolateVertsWithColour(const Vertex& _one, const Vertex& _two)
 {
 	// Gradient
 	int temp_r,temp_g,temp_b;
-	
+
+	Vertex tempOne, tempTwo, tempThree;
+
 	// Which one is higher or lower?
 	if (_two.GetY() < _one.GetY())
 	{
-		Vertex _three = _two;
-		_two = _one;
-		_one = _three;
+		Vertex tempThree = _two;
+		tempTwo = _one;
+		tempOne = tempThree;
 	}
 	
 	int v1_r, v1_g, v1_b;
@@ -431,7 +433,6 @@ void Rasterizer::InterpolateVertsWithColour(Vertex _one, Vertex _two)
 
 	// These are the values that the gradient will be applied to.
 	int currentR = 0, currentG = 0, currentB = 0;
-
 
 	// Gradient incremental colours
 	currentR = v1_r;
@@ -461,9 +462,9 @@ void Rasterizer::InterpolateVertsWithColour(Vertex _one, Vertex _two)
 		if (x < _scanLines[scanline].xStart)
 		{
 			_scanLines[scanline].xStart = x;
-			_scanLines[scanline].rStart = (currentR > 255 ? 255 : (currentR < 0 ? 0 : currentR));
-			_scanLines[scanline].gStart = (currentG > 255 ? 255 : (currentG < 0 ? 0 : currentG));
-			_scanLines[scanline].bStart = (currentB > 255 ? 255 : (currentB < 0 ? 0 : currentB));
+			_scanLines[scanline]._rStart = (currentR > 255 ? 255 : (currentR < 0 ? 0 : currentR));
+			_scanLines[scanline]._gStart = (currentG > 255 ? 255 : (currentG < 0 ? 0 : currentG));
+			_scanLines[scanline]._bStart = (currentB > 255 ? 255 : (currentB < 0 ? 0 : currentB));
 		}
 
 		if (x > _scanLines[scanline].xEnd)
@@ -536,7 +537,7 @@ void Rasterizer::DrawSolidGDIFlat(const Model3D& model)
 
 	Model3D tempMod = model;
 
-	PointF point1,point2,point3;
+	PointF point1, point2, point3;
 
 	Vertex _vert1, _vert2, _vert3;
 	Polygon3D tempPoly;
@@ -553,23 +554,23 @@ void Rasterizer::DrawSolidGDIFlat(const Model3D& model)
 
 		if (tempPoly.GetBackfacing())
 		{
-		// Loading in the verts
-		_vert1 = tempMod.GetTransformedVertex(tempPoly.GetValue(0));
-		_vert2 = tempMod.GetTransformedVertex(tempPoly.GetValue(1));
-		_vert3 = tempMod.GetTransformedVertex(tempPoly.GetValue(2));
+			// Loading in the verts
+			_vert1 = tempMod.GetTransformedVertex(tempPoly.GetValue(0));
+			_vert2 = tempMod.GetTransformedVertex(tempPoly.GetValue(1));
+			_vert3 = tempMod.GetTransformedVertex(tempPoly.GetValue(2));
 		
-		// Setting up the verts positions
-		point1 = PointF(_vert1.GetX(),_vert1.GetY());
-		point2 = PointF(_vert2.GetX(),_vert2.GetY());
-		point3 = PointF(_vert3.GetX(),_vert3.GetY());
+			// Setting up the verts positions
+			point1 = PointF(_vert1.GetX(),_vert1.GetY());
+			point2 = PointF(_vert2.GetX(),_vert2.GetY());
+			point3 = PointF(_vert3.GetX(),_vert3.GetY());
 
-		// An array for PointFloats
-		_verts[0] = point1;
-		_verts[1] = point2;
-		_verts[2] = point3;
+			// An array for PointFloats
+			_verts[0] = point1;
+			_verts[1] = point2;
+			_verts[2] = point3;
 
-		SolidBrush _newbrush(tempMod.GetPolygons()[i].GetColor());
-		_graphics->FillPolygon(&_newbrush,pPoints,3);
+			SolidBrush _newbrush(tempMod.GetPolygons()[i].GetColor());
+			_graphics->FillPolygon(&_newbrush, pPoints, 3);
 		}
 	}
 

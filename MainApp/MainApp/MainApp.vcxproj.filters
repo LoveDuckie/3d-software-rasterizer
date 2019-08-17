@@ -81,22 +81,43 @@
     <ClInclude Include="$(MSBuildProjectDirectory)\Source\Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\AppEngineConstants.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\AppEngineConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FBXModelImporter.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WindowsFileSystem.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\FBXModelImporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MD2ModelImporter.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IFileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\IFileSystem.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IRasterizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\IModelImporter.h">
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\MD2ModelImporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\IModelImporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\Memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\String.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\StringRef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildProjectDirectory)\Source\WindowsFileSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CharTraits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -159,6 +180,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\IModelImporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

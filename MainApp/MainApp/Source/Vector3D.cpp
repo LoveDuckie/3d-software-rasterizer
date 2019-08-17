@@ -6,7 +6,7 @@ Vector3D::Vector3D() : _x(0.f), _y(0.f), _z(0.f), _length(0.f)
 {
 }
 
-Vector3D::Vector3D(const Vector3D& rhs)
+Vector3D::Vector3D(const Vector3D& rhs) : _x(rhs._x), _y(rhs._y), _z(rhs._z)
 {
 }
 
@@ -90,7 +90,7 @@ const Vector3D Vector3D::operator-(const Vector3D &other)
 // Return magnitude of the shape -- otherwise considered as the length
 float Vector3D::Magnitude()
 {	
-	return sqrt(
+	return sqrtf(
 		(this->_x * this->_x) +
 		(this->_y * this->_y) + 
 		(this->_z * this->_z));

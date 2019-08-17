@@ -26,7 +26,7 @@ int _speed;
 int _modeIndex = 1;
 int _demoTicker;
 
-AppEngine::AppEngine(void) : _rasterizer(0), _ambientLight()
+AppEngine::AppEngine() : _rasterizer(0), _ambientLight(), _importer(0), _hWnd()
 {
 }
 
@@ -175,7 +175,7 @@ void AppEngine::Render(void)
 		//				 -sin(YRotation), 0, cos(YRotation), 0,
 		//				 0, 0, 0, 1);
 	
-	this->_model.ApplyTransformToLocalVertices(Matrix3D::MakeRotation(Matrix3D::DegreesToRadians(x_axis),
+	this->_model.ApplyTransformToLocalVertices(Matrix3D::Rotate(Matrix3D::DegreesToRadians(x_axis),
 											   Matrix3D::DegreesToRadians(y_axis),
 											   Matrix3D::DegreesToRadians(z_axis)));
 	//Vertex _vertex[4] = {Vertex(200.0f,200.0f,0.0f),

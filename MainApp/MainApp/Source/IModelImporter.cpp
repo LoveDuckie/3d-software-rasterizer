@@ -1,7 +1,12 @@
 #include "stdafx.h"
 #include "IModelImporter.h"
 
-Model3D* const IModelImporter::Import(const char* const absoluteFilePath)
+const Model3D* IModelImporter::Import(const char* const absoluteFilePath)
+{
+	return nullptr;
+}
+
+Model3D* const IModelImporter::OnImport(const char* const absoluteFilePath)
 {
 	return nullptr;
 }

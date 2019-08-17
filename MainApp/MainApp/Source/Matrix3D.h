@@ -18,13 +18,12 @@ class Matrix3D
 		
 		const Matrix3D operator*(const Matrix3D &other) const;
 		const Vertex operator*(const Vertex &p) const;
-		const Vertex operator+(const Vertex &p) const;
 
 		void SetValues(int x, int y, float value);
 
-		const static Matrix3D MakeRotation(float, float, float);
+		const static Matrix3D Rotate(float, float, float);
 
-		const float GetValues(int x, int y);
+		const float GetValue(int x, int y);
 
 		const float static DegreesToRadians(const int& degrees);
 

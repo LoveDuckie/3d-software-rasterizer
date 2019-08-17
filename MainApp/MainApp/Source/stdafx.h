@@ -18,6 +18,6 @@
 #include <tchar.h>
 #include <GdiPlus.h>
 
-
+#include "String.h"
 
 // TODO: reference additional headers your program requires here
