@@ -1,18 +1,16 @@
 #include "stdafx.h"
 #include "Vector3D.h"
 
-// Default values
-Vector3D::Vector3D() : _x(0.f), _y(0.f), _z(0.f), _length(0.f)
+Vector3D::Vector3D() : _x(0.f), _y(0.f), _z(0.f), _length(0.f), _data()
 {
 }
 
-Vector3D::Vector3D(const Vector3D& rhs) : _x(rhs._x), _y(rhs._y), _z(rhs._z)
+Vector3D::Vector3D(const Vector3D& rhs) : _x(rhs._x), _y(rhs._y), _z(rhs._z), _data()
 {
 }
 
 Vector3D::~Vector3D()
 {
-	// Destructor
 }
 
 // Division (for dividing my contribution count in one of the vertex normal calculation classes)
@@ -23,15 +21,13 @@ void Vector3D::DivideByInt(int value)
 	this->_z /= value;
 }
 
-// Constructors
-Vector3D::Vector3D(float x, float y, float z) : _x(x),_y(y),_z(z),_length(0.f)
+Vector3D::Vector3D(float32 x, float32 y, float32 z) : _x(x),_y(y),_z(z),_length(0.f), _data()
 {
 }
 
-// Simple mutators
 const float& Vector3D::GetX() const
 {
-	return _x;
+	return this->_x;
 }
 
 const float& Vector3D::GetZ() const
@@ -53,6 +49,11 @@ const Vector3D Vector3D::operator+(const Vector3D &other)
 					 this->_z + other._z);
 
 	return _temp;
+}
+
+const Vector3D Vector3D::operator+(const int32& other)
+{
+
 }
 
 // Cross product creation
@@ -87,8 +88,18 @@ const Vector3D Vector3D::operator-(const Vector3D &other)
 
 }
 
+const Vector3D Vector3D::operator/(const Vector3D& other)
+{
+	return Vector3D(this->_x / other._x, this->_y / other._y, this->_z / other._z);
+}
+
+const Vector3D Vector3D::operator/(const int32& other)
+{
+
+}
+
 // Return magnitude of the shape -- otherwise considered as the length
-float Vector3D::Magnitude()
+float32 Vector3D::Magnitude()
 {	
 	return sqrtf(
 		(this->_x * this->_x) +
@@ -104,11 +115,6 @@ Vector3D Vector3D::Normalise()
 		this->_z / this->Magnitude());
 
 	return Sum;
-}
-
-void Vector3D::StatNormalise(Vector3D _vector)
-{
-	// Do later
 }
 
 void Vector3D::SetX(float x)

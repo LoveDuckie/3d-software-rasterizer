@@ -1,6 +1,7 @@
 #pragma once
 #include <GdiPlus.h>
 #include "Vector3D.h"
+#include "Defines.h"
 
 using namespace Gdiplus;
 

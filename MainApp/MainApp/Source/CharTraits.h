@@ -22,6 +22,7 @@ public:
 	static const char Return = '\r';
 	static const char Backslash = '\\';
 	static const char Forwardslash = '/';
+	static const char NullTerminator = '\0';
 
 	static APP_FORCEINLINE const int32 GetLength(const CharType* rhs)
 	{
@@ -56,10 +57,20 @@ public:
 	static const wchar_t Return = L'\r';
 	static const wchar_t Backslash = L'\\';
 	static const wchar_t Forwardslash = L'/';
+	static const wchar_t NullTerminator = L'\0';
 
-	static const int32 GetLength(const CharType* rhs)
+	static APP_FORCEINLINE const int32 GetLength(const CharType* rhs)
 	{
-		return 0;
+		return -1;
 	}
 
+	static APP_FORCEINLINE const int32 StrCmp(const CharType* lhs, const CharType* rhs)
+	{
+		return -1;
+	}
+
+	static APP_FORCEINLINE const float32 ToFloat32(const StringRef& rhs)
+	{
+		return 0.f;
+	}
 };

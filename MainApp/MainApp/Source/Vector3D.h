@@ -7,14 +7,16 @@
 // x means displacement in the X direction, not the position. Similar for the other y & z properties.
 
 #include <math.h>
-
+#include "Defines.h"
+#include <xmmintrin.h>
+#include <emmintrin.h>
 
 class Vector3D
 {
 public:
-	Vector3D(void);
+	Vector3D();
 	Vector3D(const Vector3D& rhs);
-	Vector3D(float, float, float);
+	Vector3D(float32 x, float32 y, float32 z);
 	~Vector3D(void);
 	
 	const float& GetX() const;
@@ -25,15 +27,16 @@ public:
 	void SetY(float);
 	void SetZ(float);
 
-	float Magnitude();
+	float32 Magnitude();
 	Vector3D Normalise();
 
 	void DivideByInt(int);
 
-	static void StatNormalise(Vector3D _vector);
-
-	const Vector3D operator+ (const Vector3D &other);
-	const Vector3D operator- (const Vector3D &other);
+	const Vector3D operator+ (const Vector3D& other);
+	const Vector3D operator- (const Vector3D& other);
+	const Vector3D operator/ (const Vector3D& other);
+	const Vector3D operator+ (const int32& other);
+	const Vector3D operator/ (const int32& other);
 
 	//Vector3D& operator= (const Vector3D &other);
 
@@ -44,12 +47,14 @@ public:
 	float DotProduct(const Vector3D &other);
 	Vector3D CrossProduct(const Vector3D &other);
 
+	// Calculate and retrieve the length from the vector
 	const float& GetLength() const;
 
 private:
 	float _x;
 	float _y;
 	float _z;
+	__m128 _data;
 
 	float _length; // Magnitude
 };
