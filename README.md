@@ -1,4 +1,4 @@
-3DSoftwareRasterizer
+3D Software Rasterizer
 ====================
 
-A 3D renderer that makes use of GDI+ to output transformations.
+A 3D software rasterizer that uses GDI+ for rendering assets loaded from popular model file formats.
