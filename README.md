@@ -12,7 +12,7 @@ Features
 
 Backlog
 -------------------
-* SIMD optimized vector operations.
-* Load assets from FBX file format.
-* Custom string implementation.
-* DLMalloc memory allocator integration.
+- [ ] SIMD optimized vector operations.
+- [ ] Load assets from FBX file format.
+- [ ] Custom string implementation.
+- [ ] DLMalloc memory allocator integration.
